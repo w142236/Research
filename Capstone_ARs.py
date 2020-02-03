@@ -24,29 +24,40 @@ spec_humidity = fh.variables['hus'][:]#same dims
 heights = fh.variables['zg'][:]#same dims
 rel_humidity = fh.variables['hur'][:]#same dims
 
-#Task 2: Build the data structure
+#Task 2: Build Data Structure###################################################################################################
 u_wind_dict = {}
+spec_humid_dict = {}
+ivt_dict = {}
+dict = {'u_wind':u_wind_dict, 'specific_humidity':spec_humid_dict, 'IVT': ivt_dict}
+
 for i in range(len(time)):
     #u_wind_dict.update({time[i]:{}})
-    u_wind_dict.update({time[i]:{}})
-for times in u_wind_dict:
-    for i in range(len(levs)):
+    for keys in dict:
+        dict[keys].update({time[i]:{}})
+for times in dict['u_wind']:
+    for i in range(len(levs)): #Tried to do this in one line. Cannot hash iterable item
         u_wind_dict[times].update({levs[i]:np.array([u_wind[int(times)][i]])})
+        spec_humid_dict[times].update({levs[i]:np.array([spec_humidity[int(times)][i]])})
+        #ivt_dict[times].update({levs[i]:np.array([])}) Will need to calculate this later
 
 
 #for i in range(len(time)):
 #    u_wind_dict[i] = u_wind[i]#time,lev,lat,lon
     
-#Task 3: Build map
+
+#Task 3: Build Map ###################################################################################################
         
 lon_0 = np.mean(lons)
 lat_0 = np.mean(lats)    
 m = Basemap(projection='cyl',llcrnrlat=-90,urcrnrlat=90,\
-            llcrnrlon=-180,urcrnrlon=180,resolution='c')
+            llcrnrlon=0,urcrnrlon=360,resolution='c')
 
-for times in u_wind_dict:
+
+#Task 4: plotv###################################################################################################
+
+for times in dict['u_wind']:
     #print(yearmonth)
-    for levels in u_wind_dict[times]:
+    for levels in dict['u_wind'][times]:
         #if (heights_dict[yearmonth][days] > 0.0) > 0.0:
         #    data = np.array(heights_dict[yearmonth][days])
         #data = np.array(heights_dict[yearmonth][days])
@@ -70,10 +81,9 @@ for times in u_wind_dict:
 
         plt.title('u-wind at {} hpa: Day: {}'.format(levels, times))
         plt.show()
-        
+    
+    
 
-
-#Task 4: plot
 
 #Task 5: Sorting Algorithm
 
