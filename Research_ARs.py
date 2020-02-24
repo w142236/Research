@@ -219,28 +219,28 @@ for yearmonth in N_heights_dict:
         #    data = np.array(heights_dict[yearmonth][days])
         #data = np.array(heights_dict[yearmonth][days])
         #print(yearmonth,days)
-        if (int(yearmonth) < 200012):
+        #if (int(yearmonth) < 200012):
         #    print("true")
             #N_heights_dict[yearmonth][days] = N_heights_dict[yearmonth][days].filled(np.mean(N_heights_dict[yearmonth][days]))
             #cs = m.pcolor(xi,yi,np.squeeze(N_heights_dict[yearmonth][days]), cmap = 'hsv')
-            cs = m.pcolor(x, y , np.squeeze(N_heights_dict[yearmonth][days]), cmap = 'hsv')
-            m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
-            m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
+        cs = m.pcolor(x, y , np.squeeze(N_heights_dict[yearmonth][days]), cmap = 'hsv')
+        m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
+        m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
 
 
-            m.drawcoastlines()
-            m.drawstates()
-            m.drawcountries()
+        m.drawcoastlines()
+        m.drawstates()
+        m.drawcountries()
 
 
-            cbar = m.colorbar(cs, location='right', pad="10%")
-            cbar.set_label('meters')
+        cbar = m.colorbar(cs, location='right', pad="10%")
+        cbar.set_label('meters')
 
 
-            plt.title('Northern Cluster Map {}: YearMonth: {} Day: {}'.format(number, yearmonth, days))
-            plt.show()
-            number += 1
-
+        plt.title('Northern Cluster Map {}: YearMonth: {} Day: {}'.format(number, yearmonth, days))
+        plt.show()
+        number += 1
+        #
 #341 - 348 are NaN
 
 #End################################################################################################
