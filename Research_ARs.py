@@ -17,7 +17,7 @@ import pandas as pd
 
 
 
-filename = "C:/Users/willk/desktop/cluster_dates.txt"
+filename = "D:/Code Research/ARs/cluster_dates.txt"
 f = open(filename, "r")
 S_cluster_datetimes = []
 N_cluster_datetimes = []
